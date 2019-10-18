@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-Map<int, Color> color =
-{
+Map<int, Color> color = <int, Color>{
   50: Colors.grey.shade50,
   100: Colors.grey.shade100,
   200: Colors.grey.shade200,
