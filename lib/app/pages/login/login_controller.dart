@@ -1,9 +1,13 @@
+import 'package:cc_uffs/app/pages/login/login_presenter.dart';
+import 'package:cc_uffs/device/repositories/authentication_repository.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class LoginController extends Controller {
-  LoginController() : super(LoginPresenter(AuthenticationRepository()));
+  LoginController() : presenter = LoginPresenter(AuthenticationRepository()), super();
+
+  LoginPresenter presenter;
   TextEditingController passwordFieldController;
   TextEditingController emailFieldController;
 
