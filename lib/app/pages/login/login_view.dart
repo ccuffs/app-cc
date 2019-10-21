@@ -26,7 +26,7 @@ class LoginViewState extends ViewState<LoginView, LoginController> {
           padding: const EdgeInsets.only(top: 0,left: 30,right: 30,bottom: 0),
           child: ListView(
             children: <Widget>[
-              // LOGO 
+              // LOGO
               SizedBox(
                 height: 128,
                 child: Image.asset('assets/imgs/logo-verde.png'),
@@ -104,6 +104,7 @@ class LoginViewState extends ViewState<LoginView, LoginController> {
                 ),
                 child: SizedBox.expand(
                   child: FlatButton(
+                    onPressed: controller.loginUser,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
@@ -117,7 +118,6 @@ class LoginViewState extends ViewState<LoginView, LoginController> {
                         ),
                       ],
                     ),
-                    onPressed: controller.loginUser
                   ),
                 ),
               )
