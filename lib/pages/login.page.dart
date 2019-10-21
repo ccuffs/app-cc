@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:cc_uffs/theme/color.theme.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:cc_uffs/pages/home.page.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
+  @override
+  LoginPageState createState() => new LoginPageState();
+}
+
+class LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -10,11 +16,11 @@ class LoginPage extends StatelessWidget {
         color: primaryColor,
         child: Container(
           color: Colors.white,
-          margin: EdgeInsets.only(top: 50,left: 20,right: 20,bottom: 40),
-          padding: EdgeInsets.only(top: 0,left: 30,right: 30,bottom: 0),
+          margin: EdgeInsets.only(top: 50, left: 20, right: 20, bottom: 40),
+          padding: EdgeInsets.only(top: 0, left: 30, right: 30, bottom: 0),
           child: ListView(
             children: <Widget>[
-              // LOGO 
+              // LOGO
               SizedBox(
                 height: 128,
                 child: Image.asset("assets/imgs/logo-verde.png"),
@@ -24,13 +30,12 @@ class LoginPage extends StatelessWidget {
               TextFormField(
                 keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(
-                  labelText: "IdUFFS ou CPF",
-                  labelStyle: TextStyle(
-                    color: Colors.black87,
-                    fontWeight: FontWeight.w500,
-                    fontSize: 20,
-                  )
-                ),
+                    labelText: "IdUFFS ou CPF",
+                    labelStyle: TextStyle(
+                      color: Colors.black87,
+                      fontWeight: FontWeight.w500,
+                      fontSize: 20,
+                    )),
                 style: TextStyle(fontSize: 20),
               ),
               SizedBox(height: 10),
@@ -39,13 +44,12 @@ class LoginPage extends StatelessWidget {
                 keyboardType: TextInputType.text,
                 obscureText: true,
                 decoration: InputDecoration(
-                  labelText: "Senha",
-                  labelStyle: TextStyle(
-                    color: Colors.black87,
-                    fontWeight: FontWeight.w500,
-                    fontSize: 20,
-                  )
-                ),
+                    labelText: "Senha",
+                    labelStyle: TextStyle(
+                      color: Colors.black87,
+                      fontWeight: FontWeight.w500,
+                      fontSize: 20,
+                    )),
                 style: TextStyle(fontSize: 20),
               ),
               Container(
@@ -62,7 +66,8 @@ class LoginPage extends StatelessWidget {
                         ),
                       ),
                       onPressed: () async {
-                        const url = 'https://id.uffs.edu.br/id/XUI/?realm=/#forgotUsername//';
+                        const url =
+                            'https://id.uffs.edu.br/id/XUI/?realm=/#forgotUsername//';
                         if (await canLaunch(url)) {
                           await launch(url);
                         } else {
@@ -80,7 +85,8 @@ class LoginPage extends StatelessWidget {
                         ),
                       ),
                       onPressed: () async {
-                        const url = 'https://id.uffs.edu.br/id/XUI/?realm=/#passwordReset/';
+                        const url =
+                            'https://id.uffs.edu.br/id/XUI/?realm=/#passwordReset/';
                         if (await canLaunch(url)) {
                           await launch(url);
                         } else {
@@ -104,21 +110,26 @@ class LoginPage extends StatelessWidget {
                 ),
                 child: SizedBox.expand(
                   child: FlatButton(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Text(
-                          'ENTRAR',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                            fontSize: 18,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Text(
+                            'ENTRAR',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                              fontSize: 18,
+                            ),
                           ),
-                        ),
-                      ],
-                    ),
-                    onPressed: () => {}
-                  ),
+                        ],
+                      ),
+                      onPressed: () => {
+                            Navigator.pop(context),
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => HomePage()))
+                          }),
                 ),
               )
             ],
