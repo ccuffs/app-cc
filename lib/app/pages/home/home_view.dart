@@ -1,14 +1,20 @@
-import 'package:flutter/material.dart';
+import 'package:cc_uffs/app/pages/home/home_controller.dart';
 import 'package:cc_uffs/theme/color.theme.dart' as AppColor;
 import 'package:cc_uffs/components/appdrawer.component.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 
-class HomePage extends StatefulWidget {
+class HomeView extends View {
   @override
-  HomePageState createState() => new HomePageState();
+  State<StatefulWidget> createState() {
+    return HomeViewState(HomeController());
+  }
 }
 
-class HomePageState extends State<HomePage> {
-  @override
+class HomeViewState extends ViewState<HomeView, HomeController> {
+  HomeViewState(Controller controller) : super(controller);
+
+ @override
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: AppDrawer(),

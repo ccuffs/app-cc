@@ -1,6 +1,6 @@
+import 'package:cc_uffs/app/pages/login/login_view.dart';
 import 'package:flutter/material.dart';
 import 'package:cc_uffs/theme/color.theme.dart' as AppColor;
-import 'package:cc_uffs/pages/login.page.dart';
 import 'package:cc_uffs/pages/home.page.dart';
 
 class AppDrawer extends StatelessWidget {
@@ -35,7 +35,7 @@ class AppDrawer extends StatelessWidget {
             onTap: () {
               Navigator.pop(context);
               Navigator.pop(context);
-              Navigator.push(
+              Navigator.push<MaterialPageRoute>(
                   context, MaterialPageRoute(builder: (context) => HomePage()));
             },
           ),
@@ -80,8 +80,8 @@ class AppDrawer extends StatelessWidget {
             onTap: () {
               Navigator.pop(context);
               Navigator.pop(context);
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => LoginPage()));
+              Navigator.push<MaterialPageRoute>(context,
+                  MaterialPageRoute(builder: (context) => LoginView()));
             },
           ),
         ],
