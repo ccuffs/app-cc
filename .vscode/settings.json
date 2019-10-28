@@ -1,0 +1,11 @@
+{
+    "emeraldwalk.runonsave": {
+        "commands": [
+            {
+                "match": ".dart",
+                "isAsync": false,
+                "cmd": "cd ${workspaceRoot} && flutter packages pub run build_runner build"
+            },
+        ]
+    }
+}

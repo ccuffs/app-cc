@@ -18,6 +18,7 @@ class LoginViewState extends ViewState<LoginView, LoginController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: globalKey,
       body: Container(
         color: color.primaryColor,
         child: Container(
@@ -35,7 +36,7 @@ class LoginViewState extends ViewState<LoginView, LoginController> {
               // IdUFFS
               TextFormField(
                 keyboardType: TextInputType.emailAddress,
-                controller: controller.emailFieldController,
+                controller: controller.usernameFieldController,
                 decoration: InputDecoration(
                   labelText: 'IdUFFS ou CPF',
                   labelStyle: TextStyle(

@@ -8,17 +8,15 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  # Icones do Font Awesome: https://fontawesome.com
+
+  http: ^0.12.0+2
+  cupertino_icons: ^0.1.2
   font_awesome_flutter: ^8.5.0
   flutter_clean_architecture: ^1.0.5
-  # Lib para redirect para URLs: https://pub.dev/packages/url_launcher
   url_launcher: ^5.1.6
   pedantic: ^1.5.0
   navigate: ^1.0.0
-
-  # The following adds the Cupertino Icons font to your application.
-  # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^0.1.2
+  rxdart: ^0.22.4
 
 dev_dependencies:
   flutter_test:
