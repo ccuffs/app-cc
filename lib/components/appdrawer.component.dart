@@ -1,7 +1,7 @@
-import 'package:cc_uffs/app/pages/home/home_view.dart';
 import 'package:cc_uffs/app/pages/login/login_view.dart';
 import 'package:flutter/material.dart';
 import 'package:cc_uffs/theme/color.theme.dart' as AppColor;
+import 'package:cc_uffs/pages/home.page.dart';
 
 class AppDrawer extends StatelessWidget {
   @override
