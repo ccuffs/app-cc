@@ -36,7 +36,7 @@ class AppDrawer extends StatelessWidget {
               Navigator.pop(context);
               Navigator.pop(context);
               Navigator.push<MaterialPageRoute>(
-                  context, MaterialPageRoute(builder: (context) => HomePage()));
+                  context, MaterialPageRoute(builder: (context) => HomeView()));
             },
           ),
           // Mensagens

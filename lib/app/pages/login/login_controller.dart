@@ -1,18 +1,27 @@
 import 'package:cc_uffs/app/pages/login/login_presenter.dart';
-import 'package:cc_uffs/device/repositories/authentication_repository.dart';
+import 'package:cc_uffs/app/pages/login/login_response_observer.dart';
+import 'package:cc_uffs/app/utils/default_controller.dart';
+import 'package:cc_uffs/data/repositories/authentication_repository.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
+import 'package:navigate/navigate.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class LoginController extends Controller {
-  LoginController() : presenter = LoginPresenter(AuthenticationRepository()), super();
+class LoginController extends DefaultController {
+  LoginController() :
+    presenter = LoginPresenter(AuthenticationRepository()),
+    usernameFieldController = TextEditingController(),
+    passwordFieldController = TextEditingController(),
+    super();
 
   LoginPresenter presenter;
   TextEditingController passwordFieldController;
-  TextEditingController emailFieldController;
+  TextEditingController usernameFieldController;
+
+  LoginResponseObserver loginObserver;
 
   @override
   void initListeners() {
+    loginObserver = LoginResponseObserver(controller: this);
   }
 
   Future<void> dontKnowId() async {
@@ -35,6 +44,10 @@ class LoginController extends Controller {
   }
 
   void loginUser() {
-    presenter.loginUser();
+    presenter.loginUser(usernameFieldController.text, passwordFieldController.text);
+  }
+
+  void navigateToHome() {
+    Navigate.navigate(getContext(), 'home');
   }
 }
