@@ -1,6 +1,6 @@
 import 'package:cc_uffs/app/pages/home/home_controller.dart';
-import 'package:cc_uffs/theme/color.theme.dart' as AppColor;
-import 'package:cc_uffs/components/appdrawer.component.dart';
+import 'package:cc_uffs/app/widgets/drawer.dart';
+import 'package:cc_uffs/theme/app_cc_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 
@@ -19,12 +19,12 @@ class HomeViewState extends ViewState<HomeView, HomeController> {
     return Scaffold(
       drawer: AppDrawer(),
       appBar: AppBar(
-        backgroundColor: AppColor.primaryColor,
-        title: Text("Notícias"),
+        backgroundColor: AppColors.primaryColor,
+        title: const Text('Notícias'),
       ),
       body: Container(
         child: ListView(
-          padding: EdgeInsets.only(
+          padding: const EdgeInsets.only(
             top: 10,
             left: 10,
             right: 10,
@@ -36,12 +36,10 @@ class HomeViewState extends ViewState<HomeView, HomeController> {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
-                    Image.network(
-                        "https://cc.uffs.edu.br/images/posts/teaser-sacc-400x250.jpg"),
+                    Image.network('https://cc.uffs.edu.br/images/posts/teaser-sacc-400x250.jpg'),
                     ListTile(
-                      title:
-                          Text("Semana Acadêmica Ciência da Computação 2019"),
-                      subtitle: Text("16 de Outubro de 2019"),
+                      title: const Text('Semana Acadêmica Ciência da Computação 2019'),
+                      subtitle: const Text('16 de Outubro de 2019'),
                     ),
                   ],
                 ),
@@ -53,12 +51,10 @@ class HomeViewState extends ViewState<HomeView, HomeController> {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
-                    Image.network(
-                        "https://cc.uffs.edu.br/images/posts/teaser-aviso-1800x600.jpg"),
+                    Image.network('https://cc.uffs.edu.br/images/posts/teaser-aviso-1800x600.jpg'),
                     ListTile(
-                      title:
-                          Text("Ato deliberativo sobre carga horária mínima"),
-                      subtitle: Text("15 de Outubro de 2019"),
+                      title: const Text('Ato deliberativo sobre carga horária mínima'),
+                      subtitle: const Text('15 de Outubro de 2019'),
                     ),
                   ],
                 ),

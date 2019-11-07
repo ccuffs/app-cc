@@ -44,6 +44,7 @@ class LoginController extends DefaultController {
   }
 
   void loginUser() {
+    createLoading();
     presenter.loginUser(usernameFieldController.text, passwordFieldController.text);
   }
 

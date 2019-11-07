@@ -3,7 +3,12 @@ import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 
 abstract class DefaultController extends Controller {
 
-  
+  bool hasError = false;
+
+  void createLoading() => showLoading();
+
+  void disposeLoading() => dismissLoading();
+
   void createDialog({String title, String body, String button}) {
     showDialog<Widget>(
       context: getContext(),

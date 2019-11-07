@@ -17,6 +17,7 @@ dependencies:
   pedantic: ^1.5.0
   navigate: ^1.0.0
   rxdart: ^0.22.4
+  flutter_spinkit: ^4.0.0
 
 dev_dependencies:
   flutter_test:
