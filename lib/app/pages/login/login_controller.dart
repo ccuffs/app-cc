@@ -49,6 +49,6 @@ class LoginController extends DefaultController {
   }
 
   void navigateToHome() {
-    Navigate.navigate(getContext(), 'home');
+    navigateTo('home', ReplaceRoute.all);
   }
 }

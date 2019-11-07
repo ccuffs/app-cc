@@ -1,10 +1,14 @@
-import 'package:cc_uffs/app/pages/home/home_view.dart';
 import 'package:cc_uffs/app/pages/login/login_view.dart';
+import 'package:cc_uffs/app/utils/app_drawer_controller.dart';
 import 'package:cc_uffs/session.dart';
 import 'package:cc_uffs/theme/app_cc_colors.dart';
 import 'package:flutter/material.dart';
 
 class AppDrawer extends StatelessWidget {
+  const AppDrawer({this.controller});
+
+  final AppDrawerController controller;
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -27,12 +31,7 @@ class AppDrawer extends StatelessWidget {
           ListTile(
             leading: Icon(Icons.home),
             title: const Text('Notícias'),
-            onTap: () {
-              Navigator.pop(context);
-              Navigator.pop(context);
-              Navigator.push<MaterialPageRoute>(
-                  context, MaterialPageRoute(builder: (context) => HomeView()));
-            },
+            onTap: () => controller.navigateTo('notices'),
           ),
           // Mensagens
           ListTile(
