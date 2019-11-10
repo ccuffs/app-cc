@@ -44,10 +44,11 @@ class LoginController extends DefaultController {
   }
 
   void loginUser() {
+    createLoading();
     presenter.loginUser(usernameFieldController.text, passwordFieldController.text);
   }
 
   void navigateToHome() {
-    Navigate.navigate(getContext(), 'home');
+    navigateTo('home', ReplaceRoute.all);
   }
 }

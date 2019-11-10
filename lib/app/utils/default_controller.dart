@@ -1,9 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
+import 'package:navigate/navigate.dart';
 
 abstract class DefaultController extends Controller {
 
-  
+  bool hasError = false;
+
+  void createLoading() => showLoading();
+
+  void disposeLoading() => dismissLoading();
+
+  void navigatorPop() {
+    Navigator.of(getContext()).pop();
+  }
+
+  void navigateTo(String routeName, [ReplaceRoute replaceRoute = ReplaceRoute.none]) {
+    Navigate.navigate(getContext(), routeName);
+  }
+
   void createDialog({String title, String body, String button}) {
     showDialog<Widget>(
       context: getContext(),

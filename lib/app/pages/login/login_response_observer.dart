@@ -21,10 +21,14 @@ class LoginResponseObserver {
   
   void onLoginComplete() {
     Session.user = user;
+    controller.disposeLoading();
+    controller.isLoading = false;
     controller.navigateToHome();
   }
 
   void onLoginError(Exception e) {
+    controller.isLoading = false;
+    controller.disposeLoading();
     if (e is UffsExceptions) {
       controller.createDialog(title: 'Erro no login!', body: e.message, button: 'OK');
     }

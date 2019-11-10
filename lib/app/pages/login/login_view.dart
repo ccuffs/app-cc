@@ -1,5 +1,6 @@
 import 'package:cc_uffs/app/pages/login/login_controller.dart';
-import 'package:cc_uffs/theme/color.theme.dart' as color;
+import 'package:cc_uffs/app/utils/default_view.dart';
+import 'package:cc_uffs/theme/app_cc_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 
@@ -12,15 +13,15 @@ class LoginView extends View {
 
 }
 
-class LoginViewState extends ViewState<LoginView, LoginController> {
+class LoginViewState extends DefaultViewState<LoginView, LoginController> {
   LoginViewState(Controller controller) : super(controller);
 
   @override
-  Widget build(BuildContext context) {
+  Widget defaultBuild(BuildContext context) {
     return Scaffold(
       key: globalKey,
       body: Container(
-        color: color.primaryColor,
+        color: AppColors.primaryColor,
         child: Container(
           color: Colors.white,
           margin: const EdgeInsets.only(top: 50,left: 20,right: 20,bottom: 40),

@@ -1,9 +1,14 @@
 import 'package:cc_uffs/app/pages/login/login_view.dart';
+import 'package:cc_uffs/app/utils/app_drawer_controller.dart';
+import 'package:cc_uffs/session.dart';
+import 'package:cc_uffs/theme/app_cc_colors.dart';
 import 'package:flutter/material.dart';
-import 'package:cc_uffs/theme/color.theme.dart' as AppColor;
-import 'package:cc_uffs/pages/home.page.dart';
 
 class AppDrawer extends StatelessWidget {
+  const AppDrawer({this.controller});
+
+  final AppDrawerController controller;
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -11,19 +16,13 @@ class AppDrawer extends StatelessWidget {
         children: <Widget>[
           DrawerHeader(
             decoration: BoxDecoration(
-              color: AppColor.secondColor,
+              color: AppColors.secondColor,
             ),
             child: ListTile(
               title: Center(
                 child: ListTile(
-                  title: Text(
-                    "João das Neves",
-                    style: TextStyle(color: Colors.white, fontSize: 22),
-                  ),
-                  subtitle: Text(
-                    "Bem-vindo!",
-                    style: TextStyle(color: Colors.white),
-                  ),
+                  title: Text(Session.user.name, style: TextStyle(color: Colors.white, fontSize: 22)),
+                  subtitle: Text('Bem-vindo!', style: TextStyle(color: Colors.white)),
                 ),
               ),
             ),
@@ -31,13 +30,8 @@ class AppDrawer extends StatelessWidget {
           // Notícias
           ListTile(
             leading: Icon(Icons.home),
-            title: Text("Notícias"),
-            onTap: () {
-              Navigator.pop(context);
-              Navigator.pop(context);
-              Navigator.push<MaterialPageRoute>(
-                  context, MaterialPageRoute(builder: (context) => HomeView()));
-            },
+            title: const Text('Notícias'),
+            onTap: () => controller.navigateTo('notices'),
           ),
           // Mensagens
           ListTile(
