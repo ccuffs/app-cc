@@ -1,30 +1,39 @@
-import 'package:cc_uffs/app/navigator.dart';
-import 'package:cc_uffs/app/pages/login/login_view.dart';
-import 'package:cc_uffs/theme/app_cc_colors.dart';
+import 'package:cc_uffs/blocs/user/user_bloc.dart';
+import 'package:cc_uffs/screens/home/home_view.dart';
+import 'package:cc_uffs/shared/widgets/loaders.dart';
+import 'package:cc_uffs/shared/widgets/splash_screen.dart';
+import 'package:cc_uffs/shared/widgets/welcome.dart';
 import 'package:flutter/material.dart';
-import 'package:navigate/navigate.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  MyApp() {
-    Navigate.registerRoutes(
-      routes: route,
-      defualtTransactionType: TransactionType.fromRight
-    );
-  }
   // Padrões de Cores da UFFS
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'CC UFFS',
-      // Padrões de Cores da UFFS
-      theme: ThemeData(
-        primaryColor: AppColors.primaryColor,
-        secondaryHeaderColor: AppColors.secondColor,
-      ),
-      home: LoginView(),
+    return BlocProvider<UserBloc>(
+      builder: (context) => UserBloc.autoLogin(),
+      child: BlocBuilder<UserBloc, UserState>(builder: (context, state) {
+        if (state is UserAutoLoginSuccess) {
+          return HomeView();
+        } else if (state is UserEventFirstUse)
+          return WelcomeMessage();
+        else if (state is UserStateLogoutSuccess)
+          return HomeView(userJustLoggedOut: true);
+        else if (state is UserStateSignInSuccessFromRoute) {
+          return HomeView();
+        } else if (state is UserStateLoadingSigningIn) {
+          //Todo: this loading should be prettier
+          return SignInUserLoader();
+        } else if (state is UserStateLogoutLoading) {
+          //Todo: this loading should be prettier
+          return SignOutUserLoader();
+        } else {
+          // Display splash Screen...
+          return SplashScreen();
+        }
+      }),
     );
   }
 }
