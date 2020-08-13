@@ -4,24 +4,24 @@ abstract class HomeFeedState extends Equatable {
   const HomeFeedState();
 }
 
-class HomeFeedInitial extends HomeFeedState {
+class HomeFeedStateInitial extends HomeFeedState {
   @override
   List<Object> get props => [];
 }
 
-class HomeFeedSuccessFetching extends HomeFeedState {
+class HomeFeedStateSuccessFetching extends HomeFeedState {
   final HomeContentResponse homeContent;
 
-  HomeFeedSuccessFetching(this.homeContent);
+  HomeFeedStateSuccessFetching(this.homeContent);
 
   @override
   List<Object> get props => [homeContent];
 }
 
-class HomeFeedError extends HomeFeedState {
+class HomeFeedStateError extends HomeFeedState {
   final String message;
 
-  HomeFeedError({this.message});
+  HomeFeedStateError({this.message});
   @override
   List<Object> get props => [message];
 }

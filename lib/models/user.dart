@@ -42,8 +42,6 @@ class User {
     else
       data = json;
 
-    print(data);
-
     return User(
       username: data['username'],
       uid: data['uid'],

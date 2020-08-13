@@ -8,9 +8,9 @@ part 'home_feed_event.dart';
 part 'home_feed_state.dart';
 
 class HomeFeedBloc extends Bloc<HomeFeedEvent, HomeFeedState> {
-  HomeFeedBloc() : super();
+  HomeFeedBloc() : super(HomeFeedStateInitial());
 
-  factory HomeFeedBloc.dispatch() => HomeFeedBloc()..dispatch(FetchDataEvent());
+  factory HomeFeedBloc.fetchData() => HomeFeedBloc()..add(FetchDataEvent());
 
   @override
   Stream<HomeFeedState> mapEventToState(
@@ -20,13 +20,10 @@ class HomeFeedBloc extends Bloc<HomeFeedEvent, HomeFeedState> {
       try {
         final data = await SiteCCService.fetchHomePage();
 
-        yield HomeFeedSuccessFetching(data);
+        yield HomeFeedStateSuccessFetching(data);
       } catch (error) {
-        yield HomeFeedError(message: "Um erro estranho ocorreu");
+        yield HomeFeedStateError(message: "Um erro estranho ocorreu");
       }
     }
   }
-
-  @override
-  HomeFeedState get initialState => HomeFeedInitial();
 }

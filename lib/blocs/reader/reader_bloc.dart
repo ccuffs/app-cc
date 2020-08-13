@@ -8,10 +8,10 @@ part 'reader_event.dart';
 part 'reader_state.dart';
 
 class ReaderBloc extends Bloc<ReaderEvent, ReaderState> {
-  ReaderBloc() : super();
+  ReaderBloc() : super(ReaderStateInitial());
 
   factory ReaderBloc.dispatchFetch(ParserSiteResponse item) =>
-      ReaderBloc()..dispatch(FetchUrlEvent(item: item));
+      ReaderBloc()..add(FetchUrlEvent(item: item));
 
   @override
   Stream<ReaderState> mapEventToState(
@@ -37,7 +37,4 @@ class ReaderBloc extends Bloc<ReaderEvent, ReaderState> {
       }
     }
   }
-
-  @override
-  ReaderState get initialState => ReaderInitial();
 }

@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cc_uffs/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:site_cc_parser/site_cc_parser.dart';
@@ -100,19 +101,23 @@ class _PostItem extends StatelessWidget {
               placeholder: placeholder,
               image: placeholder
                   ? null
-                  : FadeInImage.memoryNetwork(
-                      placeholder: kTransparentImage,
-                      image: item.image,
+                  : CachedNetworkImage(
+                      imageUrl: item.image,
                       fit: BoxFit.cover,
+                      placeholder: (context, url) => Container(
+                        color: Colors.grey[200],
+                      ),
                     ),
               authorImage: ClipRRect(
                 borderRadius: BorderRadius.circular(100),
                 child: placeholder
                     ? null
-                    : FadeInImage.memoryNetwork(
-                        placeholder: kTransparentImage,
-                        image: item.authorImage,
+                    : CachedNetworkImage(
+                        imageUrl: item.authorImage,
                         fit: BoxFit.cover,
+                        placeholder: (context, url) => Container(
+                          color: Colors.grey[200],
+                        ),
                       ),
               ),
               circularAuthorImage: true,

@@ -1,16 +1,17 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cc_uffs/blocs/reader/reader_bloc.dart';
 import 'package:cc_uffs/shared/widgets/custom_sliver_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:site_cc_parser/site_cc_parser.dart';
 
-class Reader extends StatefulWidget {
+class ReaderView extends StatefulWidget {
   static const routeName = "/reader";
   @override
-  _ReaderState createState() => _ReaderState();
+  _ReaderViewState createState() => _ReaderViewState();
 }
 
-class _ReaderState extends State<Reader> {
+class _ReaderViewState extends State<ReaderView> {
   double _fontSizeFactor = 0;
   double _lastPosition = 0;
 
@@ -73,7 +74,7 @@ class _ReaderState extends State<Reader> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: BlocProvider<ReaderBloc>(
-        builder: (context) => ReaderBloc.dispatchFetch(item),
+        create: (context) => ReaderBloc.dispatchFetch(item),
         child: Stack(
           children: <Widget>[
             CustomScrollView(
@@ -270,11 +271,12 @@ class _FeaturedImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: _Consts.paddingVertical),
-      child: Image.network(
-        imageUrl,
+      child: CachedNetworkImage(
+        imageUrl: imageUrl,
         fit: BoxFit.fitWidth,
         height: MediaQuery.of(context).size.height * .28,
         width: double.infinity,
+        placeholder: (context, url) => Container(color: Colors.grey[200]),
       ),
     );
   }
@@ -309,7 +311,11 @@ class _AuthorSection extends StatelessWidget {
               color: Colors.grey[200],
               height: 20,
               width: 20,
-              child: Image.network(photo),
+              child: CachedNetworkImage(
+                imageUrl: photo,
+                placeholder: (context, url) =>
+                    Container(color: Colors.grey[200]),
+              ),
             ),
           ),
           SizedBox(width: 10),
@@ -380,9 +386,10 @@ class _DisplayImage extends StatelessWidget {
     return Padding(
       padding:
           const EdgeInsets.symmetric(vertical: _Consts.paddingVertical + 10),
-      child: Image.network(
-        imageUrl,
+      child: CachedNetworkImage(
+        imageUrl: imageUrl,
         fit: BoxFit.fitWidth,
+        placeholder: (context, url) => Container(color: Colors.grey[200]),
       ),
     );
   }

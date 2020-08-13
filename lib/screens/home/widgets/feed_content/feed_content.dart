@@ -14,9 +14,9 @@ class FeedContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<HomeFeedBloc, HomeFeedState>(
       builder: (context, state) {
-        if (state is HomeFeedInitial)
+        if (state is HomeFeedStateInitial)
           return DisplayPost(placeholder: true);
-        else if (state is HomeFeedSuccessFetching) {
+        else if (state is HomeFeedStateSuccessFetching) {
           if (type == FeedContentType.news)
             return DisplayPost(items: state.homeContent.news);
           if (type == FeedContentType.posts)

@@ -4,28 +4,28 @@ abstract class SignInState extends Equatable {
   const SignInState();
 }
 
-class SignInInitial extends SignInState {
+class SignInStateInitial extends SignInState {
   @override
   List<Object> get props => [];
 }
 
-class LoadingSignInState extends SignInState {
+class SignInStateLoading extends SignInState {
   @override
   List<Object> get props => [];
 }
 
-class SuccessSignInState extends SignInState {
+class SignInStateSuccess extends SignInState {
   final User user;
 
-  SuccessSignInState(this.user);
+  SignInStateSuccess(this.user);
   @override
   List<Object> get props => [user];
 }
 
-class ErrorSignInState extends SignInState {
+class SignInStateError extends SignInState {
   final String message;
 
-  ErrorSignInState(this.message);
+  SignInStateError(this.message);
   @override
   List<Object> get props => [message];
 }

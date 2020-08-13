@@ -9,10 +9,10 @@ part 'user_event.dart';
 part 'user_state.dart';
 
 class UserBloc extends Bloc<UserEvent, UserState> {
-  UserBloc() : super();
+  UserBloc() : super(UserStateInitial());
   User _user;
 
-  factory UserBloc.autoLogin() => UserBloc()..dispatch(UserEventTryAutoLogin());
+  factory UserBloc.autoLogin() => UserBloc()..add(UserEventTryAutoLogin());
 
   User get user {
     return _user;
@@ -27,39 +27,39 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     UserEvent event,
   ) async* {
     if (event is UserEventTryAutoLogin) {
-      yield UserInitial();
+      yield UserStateInitial();
       await Future.delayed(Duration(seconds: 1));
 
       try {
         final user = await UserService.tryAutoLogin();
         if (user == null) {
-          yield UserEventFirstUse();
+          yield UserStateFirstUse();
         } else {
           _user = user;
-          yield UserAutoLoginSuccess(user: user);
+          yield UserStateAutoLoginSuccess(user: user);
         }
       } catch (error) {
-        yield UserAutoLoginError(
+        yield UserStateAutoLoginError(
           message: 'Um erro ocorreu no autoLogin',
         );
       }
     }
-    if (event is UserCreateLocalUser) {
+    if (event is UserEventCreateLocalUser) {
       try {
         final User user = await UserService.createLocal();
 
         _user = user;
 
-        yield UserAutoLoginSuccess(user: user);
+        yield UserStateAutoLoginSuccess(user: user);
       } on Exception catch (_) {
-        yield UserAutoLoginError(
+        yield UserStateAutoLoginError(
           message: 'Um erro ocorreu na criação do usuário local',
         );
       }
     }
-    if (event is UserSignInEventSuccess) {
+    if (event is UserEventSignInSuccess) {
       _user = event.user;
-      yield UserAutoLoginSuccess(user: user);
+      yield UserStateAutoLoginSuccess(user: user);
     }
 
     if (event is UserEventLogout) {
@@ -71,9 +71,9 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       try {
         final user = await UserService.createLocal();
         _user = user;
-        yield UserAutoLoginSuccess(user: user);
+        yield UserStateAutoLoginSuccess(user: user);
       } catch (error) {
-        yield UserAutoLoginError(
+        yield UserStateAutoLoginError(
           message: 'Um erro ocorreu no login',
         );
       }
@@ -85,10 +85,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       _user = user;
       await Future.delayed(Duration(seconds: 1));
 
-      yield UserAutoLoginSuccess(user: user);
+      yield UserStateAutoLoginSuccess(user: user);
     }
   }
-
-  @override
-  UserState get initialState => UserInitial();
 }

@@ -13,11 +13,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<UserBloc>(
-      builder: (context) => UserBloc.autoLogin(),
+      create: (context) => UserBloc.autoLogin(),
       child: BlocBuilder<UserBloc, UserState>(builder: (context, state) {
-        if (state is UserAutoLoginSuccess) {
+        if (state is UserStateAutoLoginSuccess) {
           return HomeView();
-        } else if (state is UserEventFirstUse)
+        } else if (state is UserStateFirstUse)
           return WelcomeMessage();
         else if (state is UserStateLogoutSuccess)
           return HomeView(userJustLoggedOut: true);
@@ -30,7 +30,6 @@ class MyApp extends StatelessWidget {
           //Todo: this loading should be prettier
           return SignOutUserLoader();
         } else {
-          // Display splash Screen...
           return SplashScreen();
         }
       }),

@@ -4,7 +4,7 @@ abstract class ReaderState extends Equatable {
   const ReaderState();
 }
 
-class ReaderInitial extends ReaderState {
+class ReaderStateInitial extends ReaderState {
   @override
   List<Object> get props => [];
 }

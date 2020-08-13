@@ -9,29 +9,26 @@ part 'sign_in_event.dart';
 part 'sign_in_state.dart';
 
 class SignInBloc extends Bloc<SignInEvent, SignInState> {
-  SignInBloc() : super();
+  SignInBloc() : super(SignInStateInitial());
 
   @override
   Stream<SignInState> mapEventToState(
     SignInEvent event,
   ) async* {
     if (event is UserSignInEvent) {
-      yield LoadingSignInState();
+      yield SignInStateLoading();
 
       try {
         final user =
             await UserService.authenticate(event.authenticator, event.password);
         if (user == null)
-          yield ErrorSignInState('Usuário ou senha errados');
+          yield SignInStateError('Usuário ou senha errados');
         else
-          yield SuccessSignInState(user);
+          yield SignInStateSuccess(user);
       } catch (error) {
-        yield ErrorSignInState('Um erro inesperado ocorreu');
+        yield SignInStateError('Um erro inesperado ocorreu');
       }
     }
-    if (state is SignInLoading) yield LoadingSignInState();
+    if (state is SignInLoading) yield SignInStateLoading();
   }
-
-  @override
-  SignInState get initialState => SignInInitial();
 }

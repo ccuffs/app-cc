@@ -21,16 +21,16 @@ class _LoginViewState extends State<LoginView> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<SignInBloc>(
-      builder: (context) => SignInBloc(),
+      create: (context) => SignInBloc(),
       child: BlocBuilder<SignInBloc, SignInState>(
         builder: (context, state) {
-          if (state is ErrorSignInState)
+          if (state is SignInStateError)
             return LoginViewScreen(error: state.message, loading: false);
-          else if (state is SuccessSignInState) {
+          else if (state is SignInStateSuccess) {
             BlocProvider.of<UserBloc>(context)
-                .dispatch(UserEventSignInSuccessFromRoute(user: state.user));
+                .add(UserEventSignInSuccessFromRoute(user: state.user));
             return Scaffold();
-          } else if (state is LoadingSignInState)
+          } else if (state is SignInStateLoading)
             return LoginViewScreen(loading: true);
           else
             return LoginViewScreen(forceSignIn: widget.showWithoutLogin);
@@ -63,7 +63,7 @@ class LoginViewScreen extends StatelessWidget {
         password: passwordController.text,
       );
 
-      bloc.dispatch(signInEvent);
+      bloc.add(signInEvent);
     }
 
     return Scaffold(
@@ -155,10 +155,10 @@ class LoginViewScreen extends StatelessWidget {
                           FlatButton(
                             onPressed: () {
                               BlocProvider.of<SignInBloc>(context)
-                                  .dispatch(SignInLoading());
+                                  .add(SignInLoading());
 
                               BlocProvider.of<UserBloc>(context)
-                                  .dispatch(UserCreateLocalUser());
+                                  .add(UserEventCreateLocalUser());
                             },
                             child: Text('Continuar sem entrar'),
                           )

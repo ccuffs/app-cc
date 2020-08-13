@@ -51,8 +51,8 @@ class _HomeTabState extends State<Home> {
       "title": Text('Home'),
     },
     {
-      "icon": Icon(Icons.notification_important),
-      "title": Text('Notificações'),
+      "icon": Icon(Icons.ac_unit),
+      "title": Text('Placeholder'),
     },
     {
       "icon": Icon(Icons.help),
@@ -68,7 +68,6 @@ class _HomeTabState extends State<Home> {
     // Prevent unauthenticated users to access some tabs
     if (!BlocProvider.of<UserBloc>(context).isAuth) {
       if (index == 3) {
-        //TODO: prettify it!
         showCustomDialog(context, child: _LogoutDialog(context: context));
         return;
       }
@@ -111,7 +110,7 @@ class _HomeTabState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: BlocProvider<HomeFeedBloc>(
-        builder: (context) => HomeFeedBloc.dispatch(),
+        create: (context) => HomeFeedBloc.fetchData(),
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -146,7 +145,7 @@ class MoreScreen extends StatelessWidget {
     return Center(
       child: FlatButton(
         onPressed: () {
-          BlocProvider.of<UserBloc>(context).dispatch(UserEventLogout());
+          BlocProvider.of<UserBloc>(context).add(UserEventLogout());
         },
         child: Text('Olá, ${user.name}, aperte para sair',
             style: TextStyle(fontSize: 30)),

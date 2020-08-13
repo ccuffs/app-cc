@@ -8,14 +8,14 @@ class UserEventTryAutoLogin extends UserEvent {
   List<Object> get props => [];
 }
 
-class UserCreateLocalUser extends UserEvent {
+class UserEventCreateLocalUser extends UserEvent {
   List<Object> get props => [];
 }
 
-class UserSignInEventSuccess extends UserEvent {
+class UserEventSignInSuccess extends UserEvent {
   final User user;
 
-  UserSignInEventSuccess({this.user});
+  UserEventSignInSuccess({this.user});
 
   @override
   List<Object> get props => [user];

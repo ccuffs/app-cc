@@ -4,13 +4,13 @@ abstract class UserState extends Equatable {
   const UserState();
 }
 
-class UserInitial extends UserState {
+class UserStateInitial extends UserState {
   @override
   List<Object> get props => [];
 }
 
-class UserAutoLoginSuccess extends UserState {
-  UserAutoLoginSuccess({this.user});
+class UserStateAutoLoginSuccess extends UserState {
+  UserStateAutoLoginSuccess({this.user});
 
   final User user;
 
@@ -18,8 +18,8 @@ class UserAutoLoginSuccess extends UserState {
   List<Object> get props => [user];
 }
 
-class UserAutoLoginError extends UserState {
-  UserAutoLoginError({this.message});
+class UserStateAutoLoginError extends UserState {
+  UserStateAutoLoginError({this.message});
 
   final String message;
 
@@ -27,7 +27,7 @@ class UserAutoLoginError extends UserState {
   List<Object> get props => [message];
 }
 
-class UserEventFirstUse extends UserState {
+class UserStateFirstUse extends UserState {
   List<Object> get props => [];
 }
 
@@ -38,7 +38,6 @@ class UserStateLogoutSuccess extends UserState {
 class UserStateLogoutLoading extends UserState {
   List<Object> get props => [];
 }
-
 
 class UserStateLogoutError extends UserState {
   List<Object> get props => [];

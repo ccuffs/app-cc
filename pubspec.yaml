@@ -9,9 +9,10 @@ dependencies:
   flutter:
     sdk: flutter
   http: ^0.12.0+2
-  flutter_bloc: ^0.21.0
+  flutter_bloc: ^6.0.1
+  equatable: ^1.2.3
+  cached_network_image: ^2.2.0+1
   shared_preferences: ^0.5.8
-  equatable: ^0.6.1
   transparent_image: ^1.0.0
   site_cc_parser:
     git:
