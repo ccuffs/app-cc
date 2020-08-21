@@ -2,7 +2,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cc_uffs/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:site_cc_parser/site_cc_parser.dart';
-import 'package:transparent_image/transparent_image.dart';
 
 class DisplayPost extends StatelessWidget {
   const DisplayPost({Key key, placeholder, this.items})

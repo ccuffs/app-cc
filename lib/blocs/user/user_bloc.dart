@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:cc_uffs/models/user.dart';
 import 'package:cc_uffs/services/user_service.dart';
+import 'package:cc_uffs/shared/constants.dart';
 import 'package:equatable/equatable.dart';
 
 part 'user_event.dart';
@@ -28,10 +29,15 @@ class UserBloc extends Bloc<UserEvent, UserState> {
   ) async* {
     if (event is UserEventTryAutoLogin) {
       yield UserStateInitial();
-      await Future.delayed(Duration(seconds: 1));
 
       try {
-        final user = await UserService.tryAutoLogin();
+        var futureList = await Future.wait([
+          UserService.tryAutoLogin(),
+          Future.delayed(SPLASH_TIME),
+        ]);
+
+        final user = futureList.first;
+
         if (user == null) {
           yield UserStateFirstUse();
         } else {

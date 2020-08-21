@@ -52,3 +52,34 @@ class CustomSliverAppBar extends StatelessWidget {
     );
   }
 }
+
+AppBar buildDefaultAppBar({bottom}) {
+  return AppBar(
+    backgroundColor: Color(0xFF343433),
+    elevation: 0,
+    title: Row(
+      children: <Widget>[
+        Image.asset(
+          ImageAssets.logo,
+          width: 40,
+          height: 30,
+        ),
+        SizedBox(width: 5),
+        Text('Ciência da Computação')
+      ],
+    ),
+    bottom: bottom,
+  );
+}
+
+AppBar buildWhiteAppBar(BuildContext context,
+    {List<Widget> actions, @required Widget title}) {
+  return AppBar(
+    elevation: 0,
+    backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+    iconTheme: IconThemeData(color: Colors.grey),
+    title: title,
+    centerTitle: true,
+    actions: actions,
+  );
+}

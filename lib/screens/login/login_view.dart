@@ -2,7 +2,7 @@ import 'package:cc_uffs/blocs/auth/sign_in_bloc.dart';
 import 'package:cc_uffs/blocs/user/user_bloc.dart';
 import 'package:cc_uffs/shared/constants.dart';
 import 'package:cc_uffs/shared/themes.dart';
-import 'package:cc_uffs/shared/widgets/custom_app_bar.dart';
+import 'package:cc_uffs/shared/widgets/custom_sliver_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -67,7 +67,7 @@ class LoginViewScreen extends StatelessWidget {
     }
 
     return Scaffold(
-      appBar: CustomAppBar(),
+      appBar: buildDefaultAppBar(),
       body: loading
           ? Center(child: CircularProgressIndicator())
           : Stack(

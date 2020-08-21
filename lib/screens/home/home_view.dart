@@ -1,7 +1,9 @@
+import 'package:cc_uffs/blocs/article_help/article_help_bloc.dart';
 import 'package:cc_uffs/blocs/home_feed/home_feed_bloc.dart';
 import 'package:cc_uffs/blocs/user/user_bloc.dart';
 import 'package:cc_uffs/routes.dart';
-import 'package:cc_uffs/screens/home/widgets/tabs_home.dart';
+import 'package:cc_uffs/screens/home/widgets/feed_content/feed_content_tab.dart';
+import 'package:cc_uffs/screens/home/widgets/help_articles/help_articles_tab.dart';
 import 'package:cc_uffs/shared/themes.dart';
 import 'package:cc_uffs/shared/widgets/dialogButton.dart';
 import 'package:flutter/material.dart';
@@ -39,9 +41,9 @@ class _HomeTabState extends State<Home> {
   int _selectedIndex = 0;
 
   static List<Widget> _widgetOptions = <Widget>[
-    TabsHome(),
+    FeedContentTab(),
     Center(child: Text('Em construção', style: TextStyle(fontSize: 30))),
-    Center(child: Text('Em construção', style: TextStyle(fontSize: 30))),
+    HelpArticlesTab(),
     MoreScreen(),
   ];
 
@@ -109,16 +111,26 @@ class _HomeTabState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BlocProvider<HomeFeedBloc>(
-        create: (context) => HomeFeedBloc.fetchData(),
+      body: MultiBlocProvider(
+        providers: [
+          BlocProvider<HomeFeedBloc>(
+              create: (context) => HomeFeedBloc.fetchData()),
+          BlocProvider<ArticleHelpBloc>(
+            create: (context) => ArticleHelpBloc(),
+          ),
+        ],
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
+      //   create: (context) => HomeFeedBloc.fetchData(),
+      //   child:,
+      // ),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         selectedItemColor: Theme.of(context).accentColor,
         backgroundColor: Theme.of(context).primaryColor,
         unselectedItemColor: Colors.grey,
         showUnselectedLabels: true,
+        elevation: 0,
         items: _bottomBarItems
             .map(
               (item) => BottomNavigationBarItem(
