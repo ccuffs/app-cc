@@ -9,6 +9,8 @@ import 'package:cc_uffs/shared/widgets/dialogButton.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'widgets/profile_widget/profile_widget.dart';
+
 class HomeView extends StatelessWidget {
   static const routeName = "/home";
 
@@ -44,7 +46,7 @@ class _HomeTabState extends State<Home> {
     FeedContentTab(),
     Center(child: Text('Em construção', style: TextStyle(fontSize: 30))),
     HelpArticlesTab(),
-    MoreScreen(),
+    ProfileWidget(),
   ];
 
   static const _bottomBarItems = [
@@ -61,8 +63,8 @@ class _HomeTabState extends State<Home> {
       "title": Text('Ajuda'),
     },
     {
-      "icon": Icon(Icons.dashboard, color: Colors.grey),
-      "title": Text('Mais'),
+      "icon": Icon(Icons.person, color: Colors.grey),
+      "title": Text('Perfil'),
     }
   ];
 
@@ -141,26 +143,6 @@ class _HomeTabState extends State<Home> {
             .toList(),
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
-      ),
-    );
-  }
-}
-
-class MoreScreen extends StatelessWidget {
-  const MoreScreen({
-    Key key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    final user = BlocProvider.of<UserBloc>(context).user;
-    return Center(
-      child: FlatButton(
-        onPressed: () {
-          BlocProvider.of<UserBloc>(context).add(UserEventLogout());
-        },
-        child: Text('Olá, ${user.name}, aperte para sair',
-            style: TextStyle(fontSize: 30)),
       ),
     );
   }

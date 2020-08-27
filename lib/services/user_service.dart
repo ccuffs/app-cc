@@ -3,6 +3,10 @@ import 'package:cc_uffs/models/user.dart';
 import 'package:cc_uffs/services/auth_uffs_service.dart';
 import 'package:cc_uffs/shared/constants.dart';
 
+enum User_exceptions {
+  PASSWORD_USERNAME_WRONG,
+}
+
 abstract class UserService {
   static Future<User> tryAutoLogin() async {
     final _user = await LocalStorage.GetString(
@@ -36,7 +40,7 @@ abstract class UserService {
       return _user;
     } catch (error) {
       //find out if it is error on login and password or net, or etc...
-      return null;
+      throw Exception(User_exceptions.PASSWORD_USERNAME_WRONG);
     }
   }
 

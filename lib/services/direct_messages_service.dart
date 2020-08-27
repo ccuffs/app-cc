@@ -1,14 +1,12 @@
 import 'dart:convert';
+import 'package:cc_uffs/helpers/http.dart';
 import 'package:cc_uffs/shared/constants.dart';
-import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
 abstract class DirectMessages {
   static Future<List<DirectMessage>> fetchFromServer() async {
-    final response = await http
-        .get(DIRECT_MESSAGE_URL)
-        .timeout(HTTP_TIMEOUT, onTimeout: () => throw Exception('Timeout'));
+    final response = await http.get(DIRECT_MESSAGE_URL);
 
     if (response.statusCode != 200) return null;
 

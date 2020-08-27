@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:cc_uffs/helpers/string.dart';
 import 'package:flutter/foundation.dart';
 
 class User {
@@ -27,7 +28,7 @@ class User {
       uid: data['uid'][0],
       email: data['mail'][0],
       personId: data['pessoa_id'][0],
-      name: data['cn'][0],
+      name: titleCase(data['cn'][0]),
       cpf: data['employeeNumber'][0],
       authenticated: true,
       tokenId: null,

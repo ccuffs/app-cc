@@ -84,6 +84,7 @@ class _ReaderViewState extends State<ReaderView> {
                   pinned: false,
                   snap: false,
                   floating: true,
+                  showNotifications: false,
                 ),
                 BlocBuilder<ReaderBloc, ReaderState>(
                   builder: (context, state) {

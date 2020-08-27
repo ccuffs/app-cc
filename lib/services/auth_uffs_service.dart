@@ -2,11 +2,16 @@ library auth_uffs;
 
 import 'dart:convert';
 
+import 'package:cc_uffs/helpers/http.dart';
 import 'package:flutter/foundation.dart';
-import 'package:http/http.dart' as http;
-// TODO: impelement timeout
 
 bool _isNumeric(string) => num.tryParse(string) != null;
+
+enum AuthUffsExceptions {
+  USER_ID_MISSING,
+  UFFS_TOKEN_ID_MISSING
+
+}
 
 abstract class AuthUffs {
   static Future<Map<String, dynamic>> getUserInfo(
@@ -34,7 +39,7 @@ abstract class AuthUffs {
         });
 
     if (res.statusCode != 200)
-      throw Exception('Could not get userId from UFFS');
+      throw Exception(AuthUffsExceptions.USER_ID_MISSING);
 
     final parsed = await jsonDecode(res.body);
     return parsed['id'];
@@ -71,7 +76,7 @@ abstract class AuthUffs {
 
     // final res = await requestPromise(options) as { data: any };
     if (res.statusCode != 200)
-      throw new Exception('Failed to obtain uffs tokenId on student portal');
+      throw new Exception(AuthUffsExceptions.UFFS_TOKEN_ID_MISSING);
 
     final parsedResponse = jsonDecode(res.body).cast<String, String>();
 

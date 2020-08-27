@@ -1,12 +1,23 @@
+import 'package:cc_uffs/helpers/http.dart';
+import 'package:cc_uffs/shared/constants.dart';
 import 'package:flutter/foundation.dart';
 import 'package:site_cc_parser/site_cc_parser.dart';
 
 abstract class SiteCCService {
   static Future<HomeContentResponse> fetchHomePage() async {
     final response = await Future.wait([
-      Scrapper.getContent(FetchContentFrom.news),
-      Scrapper.getContent(FetchContentFrom.posts),
-      Scrapper.getContent(FetchContentFrom.vacancies),
+      Scrapper.getContent(FetchContentFrom.news).timeout(
+        HTTP_TIMEOUT,
+        onTimeout: () => throw Exception(CustomHttpException.HTTP_TIMEOUT),
+      ),
+      Scrapper.getContent(FetchContentFrom.posts).timeout(
+        HTTP_TIMEOUT,
+        onTimeout: () => throw Exception(CustomHttpException.HTTP_TIMEOUT),
+      ),
+      Scrapper.getContent(FetchContentFrom.vacancies).timeout(
+        HTTP_TIMEOUT,
+        onTimeout: () => throw Exception(CustomHttpException.HTTP_TIMEOUT),
+      ),
     ]);
 
     return HomeContentResponse(
