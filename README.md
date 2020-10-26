@@ -1,86 +1,118 @@
-# Aplicativo móvel do curso
+<p align="center">
+    <img width="400" height="200" src="https://cc.uffs.edu.br/images/logo/CC-logo-com-background.svg" title="Logo do projeto"><br />
+    <img src="https://img.shields.io/maintenance/yes/2020?style=for-the-badge" title="Status do projeto">
+    <img src="https://img.shields.io/github/workflow/status/ccuffs/template/ci.uffs.cc?label=Build&logo=github&logoColor=white&style=for-the-badge" title="Status do build">
+</p>
 
+- [Projeto](#projeto)
+- [Features](#features)
+- [Telas](#telas)
+- [Começando](#come%c3%a7ando)
+  - [Instalação](#instala%c3%a7%c3%a3o)
+  - [Iniciando o projeto](#iniciando-o-projeto)
+- [Arquitetura](#arquitetura)
+  - [Bloc](#bloc)
+  - [Estrutura de Pastas](#estrutura%20de%20pastas)
+  - [Links úteis](#links%20%c3%bateis)
+- [Licença](#licen%c3%a7a)
+
+
+# Aplicativo CCUFFS <!-- omit in toc -->
+
+## Projeto
 Esse repositório contém o código do aplicativo móvel para uso de alunos, professores e técnicos do curso de [Ciência da Computação](https://cc.uffs.edu.br) da [UFFS](http://www.uffs.edu.br), Chapecó/SC.
 
 Veja o arquivo [ROADMAP](ROADMAP.md) para conhecer as funcionalidades esperadas para o aplicativo e um rascunho do plano de desenvolvimento.
 
+> **IMPORTANTE:** Sempre consulte o [CONTRIBUTING](CONTRIBUTING.md) e o [ROADMAP](ROADMAP.md) antes de começar a desenvolver uma nova feature! Um bom começo pode envolver a consulta das [ISSUES](https://github.com/ccuffs/app-cc/issues) abertas.
 
-# Ficha Técnica
+## Features Implementadas
 
-[Protótipo do APP](https://marvelapp.com/d049b9h)
-Projeto sendo desenvolvido em [Flutter](https://flutter.dev/)
+As principais features do projeto são:
+
+* Login de usuários com IdUFFS;
+* Visualização de noticias;
+* Leitor de noticias personalizável;
+* QrCode único de usuário;
+* Exibição de notícias importantes (Mensagens Diretas);
+
+## Telas
+
+Segue abaixo algumas imagens das telas implementadas na versão atual do aplicativo
+
+<img style="margin-right: 5%" src="https://user-images.githubusercontent.com/26921536/89925005-2d24e400-dbd9-11ea-9e4d-a2b29974418f.gif" alt="drawing" height="500"/>
 
 
-# Sobre a arquitetura
+<img style="margin-right: 5%" src="https://user-images.githubusercontent.com/26921536/89923101-6e67c480-dbd6-11ea-810d-7114734cf0c4.gif" alt="drawing" height="500"/>
+<br><br>
 
-  
+<img style="margin-right: 5%" src="https://user-images.githubusercontent.com/26921536/89925021-331ac500-dbd9-11ea-9caa-74ce7b1d6712.gif" alt="drawing" height="500"/>
 
-Podem encontrar mais informações sobre aqui -> https://pub.dev/packages/flutter_clean_architecture
 
-  
+<img style="margin-right: 5%" src="https://user-images.githubusercontent.com/26921536/89925035-38780f80-dbd9-11ea-936b-59542c8e1cbc.gif" alt="drawing" height="500"/>
 
-Mas em resumo o sistema esta divido nas seguintes pastas:
+<br><br>
 
+<img style="margin-right: 5%" src="https://user-images.githubusercontent.com/26921536/89925059-4037b400-dbd9-11ea-8b03-6072e758f117.gif" alt="drawing" height="500"/>
+
+
+<img style="margin-right: 5%" src="https://user-images.githubusercontent.com/26921536/89925071-44fc6800-dbd9-11ea-8008-611719f5f1d1.gif" alt="drawing" height="500"/>
+
+<br><br>
+
+<img style="margin-right: 5%" src="https://user-images.githubusercontent.com/26921536/90092932-baaf2380-dd00-11ea-8a0e-2fd0c3586dae.gif" alt="drawing" height="500"/>
+
+<img style="margin-right: 5%" src=https://user-images.githubusercontent.com/26921536/90203618-906c6d00-ddb7-11ea-82b7-fbd2258af72b.gif height="500" />
+
+
+
+
+## Começando
+Caso tenha interesse em rodar localmente o projeto, siga os passos abaixo. Levem em consideração que sera necessário a instalação do flutter em seu computador, bem como um emulador ou um dispositivo android conectado e configurado em seu computador para a utilização com o aplicativo.
+
+
+## Instalação
+
+Tenha certeza de que possui o flutter instalado em seu computador. Mais detalhes sobre a instalação do flutter podem ser encontrados em seu [site oficial](https://flutter.dev/docs/get-started/install).
+
+## Iniciando o projeto
+
+``` bash
+    git clone https://github.com/ccuffs/app-cc/
 ```
-app
- |-> pages
-     |-> page_name
-         |-> name_controller.dart
-         |-> name_view.dart
-         |-> name_presenter.dart
- |-> utils
- |-> widgets
-data
- |-> helpers
- |-> repositories
- |-> streams
-device
- |-> repositories
- |-> streams
- |-> utils
-domain
- |-> entities
- |-> repositories
- |-> usecases
+
+Vá até o diretório do projeto com o comando abaixo:
+
+``` bash
+    cd app-cc/
 ```
 
-### App
-Aqui ficam oque sera realmente exibido, e as classes que auxiliam as de exibição, dentro de pages temos a view, que exibe widgets, o controller, que controla as ações da view, e o presenter, que é responsavel por comunicar esta camada com as outras. Em utils temos classes utilitarias, e em widgets qualquer widget default do sistema.
+Execute o projeto com:
 
-#### View
-Aqui mora oque sera realmente exibido na tela, widgets realmente.
+``` bash
+    flutter run
+```
 
-#### Controller
-Possui a logica de controle da tela, ele é responsavel pelas navegações, exibição de erros, de modais, do loading, e de contactar o presenter.
+## Arquitetura
 
-#### Presenter
-O presenter é uma camada de conexão com um UseCase, essa conexão se faz da seguinte forma.
-- Um usecase é instanciado na criação do presenter;
-- Ele é executado em uma função do presenter;
--   - A execução de um usecase recebe uma classe observer, que é responsavel por chamar 3 funcões dentro do presenter (essas funções são definidas pelo controller), essas funções representam uma alteração(onNext), a finalização do usecase(onComplete), ou um erro no usecase(onError).
-- - Através desse observador valores e variaveis devem retornar para o controller.
+### Bloc
+Este projeto utiliza bloc como arquitetura de state management. Caso queira contribuir, leve em consideração que não sera admitido a utilização de outro state management (por exemplo providers). 
 
-### Data e Device
-Eles tem funções bem parecidas, eles são responsaveis por armazenar, buscar e manuzear dados, data é responsavel por buscar dados externos, como de APIs ou DBs, enquanto device controla informações do celular, como bateria, conectividade, ou informações pessoais, como numero do usuário.
+### Estrutura de Pastas
+Este projeto possui uma estrutura de pastas bem simples. Todos os blocs podem ser encontrados dentro de lib/blocs e novos blocs devem ser adicionados lá.
+Todas as Telas devem ser adicionadas em lib/screens e seus nomes devem seguir o prefixo nome_tela_view. Caso seja necessário, pode-se dividir os widgets e criar novos arquivos de widgets que devem ser adicionados as suas respectivas pastas a não ser que sejam um widget compartilhado.
 
-#### Repositories
-São responsaveis por buscar as informações.
+Widgets compartilhados (usados por varias views) devem ser salvos dentro da pasta shared/widgets
 
-#### Streams
-São responsaveis por distribuir e manter informações.
+Este projeto não usa uma lógica de controllers para separar funções e da a liberdade de utilização de setState em conjunto ao bloC caso facilite a implementação de determinada feature e mantenha o código consiso. 
 
-### Domain
-Ele representa a conexão entre o App e Data ou Device.
+### Links úteis
+- [Bloc Tutoriais](https://flutter.dev/docs/development/data-and-backend/state-mgmt/options#bloc--rx)
+- [Bloc biblioteca](https://pub.dev/packages/flutter_bloc)
+- [Instalação do Flutter](https://flutter.dev/docs/get-started/install)
+- [IDE](https://flutter.dev/docs/get-started/editor?tab=vscode)
 
-#### Usecases
-Eles acessam repositorios, instanciam entidades, alimentam streams, e devolvem dados ao controller, aqui é onde a maior parte da logica esta normalmente, e onde os testes devem ser mais fortes, são faceis de mocar o que esta ao seu redor.
 
-#### Repositories
-São abstracts, sempre, quando um presenter recebe um repository, na verdade ele recebe um abstract daqui, isso é usado pra manter as classes sempre herdando de alguem mais forte, e pra manter a sincronia entre tudo.
+## Licença
 
-#### Entities
-São classes estruturadas que representam atores do sistema, a relação mais próxima com uma estrutura MVC, seria que eles são Models, aqui colocamos, user, address, city, essas coisas
-
--------------------------------------------------------------------------------
-
-Basicamente é isso, espero não ter sido confuso, sei que parece bastante coisa, mas depois que começa a se trabalhar com essa estrutura ela é bem fluida, evita bastante erros, e é bem facil de alterar, e é muito facil separar commits e pulls em tarefas pequenas, pois como tudo gira em torno de interfaces, alguem pode fazer toda a interface, sem ter acesso a api, ou saber se ela funciona, pois a interface acessa os dados tratados, assim eliminamos dependencias desnecessarias.
+A [licença](https://github.com/ccuffs/app-cc/blob/master/LICENSE) desse projeto é a MIT License.
