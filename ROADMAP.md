@@ -18,9 +18,13 @@ Em linhas gerais, as necessidades para o aplicativo são as seguintes (não est�
 
 * **F)** Um botão para mostrar um QR code do dispositivo, que identificará a pessoa unicamente (para ser lido em eventos, por exemplo);
 
-* **G)** Uma aba para transferência de arquivos entre os aplicativos do curso e os PCs do lab
+* **G)** Uma aba para transferência de arquivos entre os aplicativos do curso e os PCs do lab;
 
 * **H)** Aba com o calendário do curso, em um estilo de timeline navegável;
+
+* **I)** Perfil pessoal com informações sobre horas acumuladas (como horas de ACC);
+
+* **J)** No perfil pessoal, lista de "achievements" do curso e os achievements já conseguimos pelo usuário.
 
 Vários desses requesitos são superfluos em um primeiro momento e são mais uma visão do que o app será no futuro.
 
@@ -37,6 +41,8 @@ Poderíamos organizar da seguinte forma:
 * **Fase 3** - assistente virtual (funcionalide C)
 
 * **Fase 4** - troca de informações (funcionalidades E, F e G);
+
+* **Fase 5** - perfil pessoal (funcionalidades I e J);
 
 ## Tecnologias
 
